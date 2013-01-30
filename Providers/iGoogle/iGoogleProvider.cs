@@ -15,7 +15,6 @@ namespace WeatherAPI.Providers.iGoogle {
 		private const string IG_XPATH_HEADER = "//xml_api_reply/weather/current_conditions/{0}";
 		
 		private XPathDocument _xpath;
-		private string _wwo_api_key;
 		
 		private Direction _windDirection;
 		
@@ -24,7 +23,10 @@ namespace WeatherAPI.Providers.iGoogle {
 		}
 		
 		public override bool IsAvailable(){
-			return true;
+			// The undocumented iGoogle weather api seems to have stopped responding.
+			// Check for a setting to decide whether or not to use it.
+			return _dllConfig.AppSettings.Settings["USE_IGOOGLE"] != null &&
+					Boolean.Parse(_dllConfig.AppSettings.Settings["USE_IGOOGLE"].Value);
 		}
 		
 		public override bool Supports(LocationSource source) {
@@ -50,7 +52,7 @@ namespace WeatherAPI.Providers.iGoogle {
 			}
 		}
 
-		public double DegressFahrienhiet {
+		public double DegreesFahrenheit {
 			get {
 				string xpath = String.Format(IG_XPATH_HEADER, "temp_f/@data");
 				object val = _xpath.CreateNavigator().SelectSingleNode(xpath);
@@ -90,7 +92,7 @@ namespace WeatherAPI.Providers.iGoogle {
 			}
 		}
 		
-		public double Percipitation {
+		public double Precipitation {
 			get {
 				return Double.NaN;
 			}

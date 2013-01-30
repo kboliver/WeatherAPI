@@ -16,13 +16,13 @@ namespace WeatherAPI.Providers.WorldWeatherOnline {
 		
 		public WWOProvider () : base() {
 			if (IsAvailable()) {
-				_wwo_api_key = _dllConfig.AppSettings.Settings["WORLD_WEATER_ONLINE_API_KEY"].Value;
+				_wwo_api_key = _dllConfig.AppSettings.Settings["WORLD_WEATHER_ONLINE_API_KEY"].Value;
 			}
 		}
 		
 		public override bool IsAvailable() {
-			return _dllConfig.AppSettings.Settings["WORLD_WEATER_ONLINE_API_KEY"] != null &&
-					!String.IsNullOrEmpty(_dllConfig.AppSettings.Settings["WORLD_WEATER_ONLINE_API_KEY"].Value);
+			return _dllConfig.AppSettings.Settings["WORLD_WEATHER_ONLINE_API_KEY"] != null &&
+					!String.IsNullOrEmpty(_dllConfig.AppSettings.Settings["WORLD_WEATHER_ONLINE_API_KEY"].Value);
 		}
 		
 		public override void Update() {
@@ -48,7 +48,7 @@ namespace WeatherAPI.Providers.WorldWeatherOnline {
 			}
 		}
 
-		public double DegressFahrienhiet {
+		public double DegreesFahrenheit {
 			get {
 				string xpath = String.Format(WWO_XPATH_HEADER, "temp_F/text()");
 				object val = _xpath.CreateNavigator().SelectSingleNode(xpath);
@@ -93,7 +93,7 @@ namespace WeatherAPI.Providers.WorldWeatherOnline {
 			}
 		}
 		
-		public double Percipitation {
+		public double Precipitation {
 			get {
 				string xpath = String.Format(WWO_XPATH_HEADER, "precipMM/text()");
 				object val = _xpath.CreateNavigator().SelectSingleNode(xpath);

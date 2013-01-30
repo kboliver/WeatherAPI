@@ -30,12 +30,12 @@ namespace WeatherAPI {
 		double DegreesCelcius { get; }
 		
 		/// <summary>
-		/// Gets the degress in Fahrienhiet at the time of the last update.
+		/// Gets the degress in Fahrenheit at the time of the last update.
 		/// </summary>
 		/// <returns>
-		/// The degress in Fahrienhiet.
+		/// The degress in Fahrenheit.
 		/// </returns>
-		double DegressFahrienhiet { get ; }
+		double DegreesFahrenheit { get ; }
 		
 		/// <summary>
 		/// Gets the wind speed in miles per hour at the time of the last update.
@@ -78,7 +78,7 @@ namespace WeatherAPI {
 		/// <returns>
 		/// The percipitation in millimeters
 		/// </returns>
-		double Percipitation { get; }
+		double Precipitation { get; }
 		
 		/// <summary>
 		/// Gets the humidity at the time of the last update.
